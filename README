@@ -1,0 +1,86 @@
+What is AutoDock?
+
+AutoDock is a suite of automated docking tools. It is designed to
+predict how small molecules, such as substrates or drug candidates,
+bind to a receptor of known 3D structure.
+
+AutoDock actually consists of two main programs: AutoDock performs
+the docking of the ligand to a set of grids describing the target
+protein; AutoGrid pre-calculates these grids.
+
+In addition to using them for docking, the atomic affinity grids
+can be visualised. This can help, for example, to guide organic
+synthetic chemists design better binders.
+
+We have also developed a graphical user interface called AutoDockTools,
+or ADT for short, which amongst other things helps to set up which
+bonds will treated as rotatable in the ligand and to analyze dockings.
+
+AutoDock has applications in:
+
+    X-ray crystallography; 
+    structure-based drug design; 
+    lead optimization; 
+    virtual screening (HTS); 
+    combinatorial library design; 
+    protein-protein docking; 
+    chemical mechanism studies.
+
+
+Installing AutoDock
+
+Read the INSTALL file in this directory for instructions on
+installing AutoDock.
+
+
+Copying AutoDock
+
+Please refer to the file "COPYING" in this directory for
+more information on copying AutoDock.
+
+From CVS
+=======================
+If you've just done a 'cvs co' then here are the commands
+necessary to make the autodock:
+
+ % aclocal
+ % autoconf
+ % automake -a
+ % ./configure
+ % make 
+ % make install
+ 
+ This will create and install autodock4 and autodock4_0 binaries, where 
+ autodock4 is autodock version 4.1 and autodock4_0 is autodock version 4.0.
+ 
+
+What is Autodock4.lga.MPI ?
+
+Autodock4.lga.MPI is the task-parallel extension of Autofock4.x for docking of more than one molecule against the same 
+target using multiple CPU cores. Particularly, the version is well suited for docking very large databases of compounds
+using high-performance super-computers. The task-parallel procedure is only available for calculations using the 
+Lamarkian Genetic Algorithm (LGA).
+
+Configuration on Cray supercomputers:
+(might not work on other supercomputing platforms)
+
+make distclean
+module load hdf5-parallel/
+module load perftools
+##cp main.cc main.c
+./configure CXX=CC CC=CC CPPFLAGS="-I/opt/cray/hdf5-parallel/1.8.5.0/hdf5-parallel-pgi/include" LIBS="-L/opt/cray/hdf5-parallel/1.8.5.0/hdf5-parallel-pgi/lib -lhdf5_hl -lhdf5 -lz" 
+##remove the flag "-Wall"
+##make
+mv autodock4 autodock4.lga.MPI
+
+Configuration on Linux clusters:
+
+make distclean
+./configure CC=mpicc  CXX="mpicxx -I/share/apps/hdf5/include -I/share/apps/mpi/gcc/openmpi-1.2.8/include -L/share/apps/hdf5/lib -lhdf5_hl -lhdf5 -lz -L/share/apps/mpi/gcc/openmpi-1.2.8/lib"
+##remove the flag "-Wall"
+##make
+mv autodock4 autodock4.lga.MPI
+
+
+
+

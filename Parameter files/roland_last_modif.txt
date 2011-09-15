@@ -1,0 +1,2 @@
+module swap PrgEnv-pgi PrgEnv-gnu
+CC test.cc -L /opt/cray/hdf5/1.8.2.3/hdf5-gnu//lib/ -g -Wall

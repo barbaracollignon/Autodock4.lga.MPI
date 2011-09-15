@@ -1,0 +1,56 @@
+=============================================================================
+The PROJECT directory is EXPERIMENTAL 
+Author: Barbara Collignon, OCT 23 2010
+=============================================================================
+
+IMPORTANT INFORMATION BEFORE STARTING
+
+1) AutodockTool1.5.2 (ADT) has to be installed on the mashine this program is running to be able to use the ADT scripts in the pre-docking procedure. The corresponding environnement variables have to be set as well. 
+
+The installation of ADT has been included in the pre-docking procedure (see bellow). Also, it can be installed manually (preferred). PLEASE, check ADTinstall.out for more information + to VERIFY the success of the installation.
+
+Because of bad environment variable setting you might get this kind of error:
+
+Traceback (most recent call last):
+  File "/home/$USER/PROJECT/mgltools_i86Linux2_1.5.2/MGLToolsPckgs/mglutil/splashregister/license.py", line 20, in <module>
+    tk_root = Tkinter.Tk()
+  File "/home/$USER/PROJECT/mgltools_i86Linux2_1.5.2/lib/python2.5/lib-tk/Tkinter.py", line 1636, in __init__
+    self.tk = _tkinter.create(screenName, baseName, className, interactive, wantobjects, useTk, sync, use)
+_tkinter.TclError: no display name and no $DISPLAY environment variable
+
+2) You might need to use ADT GUI to define the size and the center of the grids manually.
+   If you encounter problems with ADT GUI v1.5.2, please use ADT GUI v1.5.4 
+
+3) WARNING: There is a bug in ADT in GridParameters.py
+   When executing prepare_gpf4.dpf, you get this:
+
+File Format unknown can't parse it
+Traceback (most recent call last):
+  File "/home/$USER//PROJECT/mgltools_i86Linux2_1.5.2/MGLToolsPckgs/AutoDockTools/Utilities24//prepare_gpf4.py", line 96, in <module>
+    gpfm.set_types_from_directory(directory)
+  File "/home/$USER/PROJECT/mgltools_i86Linux2_1.5.2/MGLToolsPckgs/AutoDockTools/GridParameters.py", line 918, in set_types_from_directory
+    m = Read(f)[0]
+IndexError: list index out of range
+
+   Because in GridParameters.py, line 918, you have to replace "pdb*" with "pdbqt"
+
+4) Before executing "qsub launch_docking.csh", you will have to modify the path to the input data and executable.
+
+==============================================================================
+WHAT TO DO 
+==============================================================================
+
+1) Copy the PROJECT directory in your HOME directory
+
+2) In your HOME directory, execute these 3 commands to reproduce the results I sent:
+
+> cd ~/PROJECT
+> ./pre-docking
+> qsub launch_docking
+> ./post-docking
+
+The output of each command is well commented/documented
+
+Also, you should check the *err file in ~/PROJECT to VERIFY if errors occured
+
+
