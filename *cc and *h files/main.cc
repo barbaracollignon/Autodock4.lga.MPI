@@ -15,6 +15,8 @@
 **
 **   Barbara Collignon, 
 **   Original task-parallel version 0.0, MPI+HDF5 implementation 
+**   Modified input reading procedure: new flags, new command line
+**   (See J.Comp.Chem.)
 **
 ** see file AUTHORS
 **
