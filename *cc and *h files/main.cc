@@ -634,7 +634,8 @@ static Real F_hW;
 static FourByteLong clktck = 0;
 
 #ifndef VERSION
-static char * version_num = "4.2.1";
+//static char * version_num = "4.2.1";
+static char *version_num="lga.mpi"
 #else
 static char * version_num = VERSION;
 #endif
