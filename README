@@ -1,3 +1,32 @@
+What is Autodock4.lga.MPI ?
+
+Autodock4.lga.MPI is the task-parallel extension of Autofock4.x for docking of more than one molecule against the same 
+target using multiple CPU cores. Particularly, the version is well suited for docking very large databases of compounds
+using high-performance super-computers. The task-parallel procedure is only available for calculations using the 
+Lamarkian Genetic Algorithm (LGA).
+
+Configuration on Cray supercomputers:
+(might not work on other supercomputing platforms)
+
+make distclean
+module load hdf5-parallel/
+module load perftools
+##cp main.cc main.c
+./configure CXX=CC CC=CC CPPFLAGS="-I/opt/cray/hdf5-parallel/1.8.5.0/hdf5-parallel-pgi/include" LIBS="-L/opt/cray/hdf5-parallel/1.8.5.0/hdf5-parallel-pgi/lib -lhdf5_hl -lhdf5 -lz" 
+##remove the flag "-Wall"
+##make
+mv autodock4 autodock4.lga.MPI
+
+Configuration on Linux clusters:
+
+make distclean
+./configure CC=mpicc  CXX="mpicxx -I/share/apps/hdf5/include -I/share/apps/mpi/gcc/openmpi-1.2.8/include -L/share/apps/hdf5/lib -lhdf5_hl -lhdf5 -lz -L/share/apps/mpi/gcc/openmpi-1.2.8/lib"
+##remove the flag "-Wall"
+##make
+mv autodock4 autodock4.lga.MPI
+
+
+
 What is AutoDock?
 
 AutoDock is a suite of automated docking tools. It is designed to
@@ -54,32 +83,6 @@ necessary to make the autodock:
  autodock4 is autodock version 4.1 and autodock4_0 is autodock version 4.0.
  
 
-What is Autodock4.lga.MPI ?
-
-Autodock4.lga.MPI is the task-parallel extension of Autofock4.x for docking of more than one molecule against the same 
-target using multiple CPU cores. Particularly, the version is well suited for docking very large databases of compounds
-using high-performance super-computers. The task-parallel procedure is only available for calculations using the 
-Lamarkian Genetic Algorithm (LGA).
-
-Configuration on Cray supercomputers:
-(might not work on other supercomputing platforms)
-
-make distclean
-module load hdf5-parallel/
-module load perftools
-##cp main.cc main.c
-./configure CXX=CC CC=CC CPPFLAGS="-I/opt/cray/hdf5-parallel/1.8.5.0/hdf5-parallel-pgi/include" LIBS="-L/opt/cray/hdf5-parallel/1.8.5.0/hdf5-parallel-pgi/lib -lhdf5_hl -lhdf5 -lz" 
-##remove the flag "-Wall"
-##make
-mv autodock4 autodock4.lga.MPI
-
-Configuration on Linux clusters:
-
-make distclean
-./configure CC=mpicc  CXX="mpicxx -I/share/apps/hdf5/include -I/share/apps/mpi/gcc/openmpi-1.2.8/include -L/share/apps/hdf5/lib -lhdf5_hl -lhdf5 -lz -L/share/apps/mpi/gcc/openmpi-1.2.8/lib"
-##remove the flag "-Wall"
-##make
-mv autodock4 autodock4.lga.MPI
 
 
 
